@@ -1,4 +1,4 @@
-name: CI/CD Workflow
+name: Feature Branch CI/CD
 
 on:
   push:
@@ -42,8 +42,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Deploy to production
-        if: github.event_name == 'push' && (github.ref == 'refs/heads/release/1.0' || github.ref == 'refs/heads/release/1.1')
+        if: github.event_name == 'push' && github.ref_type == 'branch'
         run: |
-          echo "Deployando 🚀"
-          # Inserta aquí los comandos para el despliegue en la rama release
-          # Agrega más pasos de implementación si es necesario
+          echo "Deployando para la rama feature/${{ github.event_ref }}"
+
+
