@@ -1,1 +1,42 @@
 name: CI/CD Workflow
+
+on:
+  push:
+    branches:
+      - feature/*
+  schedule:
+    - cron: "45 19 * * 1"
+    - cron: "00 00 * * 2"
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          npm install
+      # Agrega más pasos de prueba si es necesario
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build application
+        run: |
+          npm run build
+      # Agrega más pasos de construcción si es necesario
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Deploy to production
+        if: github.event_name == 'push' && (github.ref == 'refs/heads/release/1.0' || github.ref == 'refs/heads/release/1.1')
+        run: |
+          # Inserta aquí los comandos para el despliegue en la rama release
+      # Agrega más pasos de implementación si es necesario
