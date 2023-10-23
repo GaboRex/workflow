@@ -20,15 +20,24 @@ jobs:
           npm install
       # Agrega más pasos de prueba si es necesario
 
+  jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Build application
-        run: |
-          npm run build
-      # Agrega más pasos de construcción si es necesario
+
+      - name: Install Node.js and Dependencies
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14  # Especifica la versión de Node.js que necesitas
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Application
+        run: npm run build
+
 
   deploy:
     runs-on: ubuntu-latest
