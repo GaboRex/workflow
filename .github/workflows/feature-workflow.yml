@@ -1,4 +1,4 @@
-name: Feature Branch CI/CD
+name: Feature Branch Workflow
 
 on:
   push:
