@@ -44,6 +44,4 @@ jobs:
       - name: Deploy to production
         if: github.event_name == 'push' && (github.ref == 'refs/heads/release/1.0' || github.ref == 'refs/heads/release/1.1')
         run: |
-          echo "Deployando 🚀"
-          # Inserta aquí los comandos para el despliegue en la rama release
-          # Agrega más pasos de implementación si es necesario
+          echo "Deployando 🚀........."
