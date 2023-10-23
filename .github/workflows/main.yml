@@ -1,4 +1,4 @@
-name: CI/CD Workflow
+name: Feature Branch CI/CD
 
 on:
   push:
@@ -36,12 +36,12 @@ jobs:
       - name: Build Application
         run: npm run build
 
-  deploy:
+   deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Deploy to production
-        if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/release/')
+        if: github.event_name == 'push' && github.ref_type == 'branch'
         run: |
-          echo "Deployando 🚀........."
+          echo "Deployando para la rama feature/${{ github.event_ref }}"
