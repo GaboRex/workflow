@@ -18,7 +18,6 @@ jobs:
       - name: Install dependencies
         run: |
           npm install
-      # Agrega más pasos de prueba si es necesario
 
   build:
     runs-on: ubuntu-latest
@@ -26,17 +25,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install Node.js and Dependencies
+      - name: Use Node.js 16.x
         uses: actions/setup-node@v2
         with:
-          node-version: 14  # Especifica la versión de Node.js que necesitas
+          node-version: 16
 
       - name: Install Dependencies
         run: npm install
 
       - name: Build Application
         run: npm run build
-
 
   deploy:
     runs-on: ubuntu-latest
@@ -47,4 +45,3 @@ jobs:
         if: github.event_name == 'push' && (github.ref == 'refs/heads/release/1.0' || github.ref == 'refs/heads/release/1.1')
         run: |
           # Inserta aquí los comandos para el despliegue en la rama release
-      # Agrega más pasos de implementación si es necesario
